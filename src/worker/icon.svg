@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <title>skyback</title>
+  <rect width="512" height="512" rx="112" fill="#1083fe"/>
+  <g transform="translate(-25 4)" fill="#ffffff">
+    <circle cx="196" cy="290" r="74"/>
+    <circle cx="290" cy="236" r="96"/>
+    <circle cx="376" cy="300" r="64"/>
+    <rect x="196" y="290" width="180" height="74"/>
+  </g>
+  <g fill="none" stroke="#1083fe" stroke-width="30" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M308 258H208"/>
+    <path d="M248 216L206 258L248 300"/>
+  </g>
+</svg>

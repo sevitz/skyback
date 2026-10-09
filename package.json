@@ -1,0 +1,19 @@
+{
+  "name": "skyback",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "node --no-warnings --test 'test/*.test.js'",
+    "smoke": "rm -rf .wrangler/smoke && wrangler deploy --dry-run --outdir .wrangler/smoke/dist && CI=true wrangler d1 migrations apply skyback --local --persist-to .wrangler/smoke/state && node --no-warnings --test test/worker.smoke.js",
+    "bench": "node tools/bench.js",
+    "refresh-demo": "node --no-warnings tools/refresh-demo.js",
+    "db:migrate:local": "wrangler d1 migrations apply skyback --local",
+    "db:migrate:remote": "wrangler d1 migrations apply skyback --remote"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

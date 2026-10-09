@@ -1,0 +1,39 @@
+# app-ops manifest. Lives next to this app's wrangler.toml. See app-ops's own
+# CLAUDE.md and docs/PROJECT-JOURNAL.md for the full format rationale.
+#
+# Every field in this app's 1Password item (vault _code_secrets) must be classified
+# into exactly one of: worker, backup, github, d1_settings, ignore. An unclassified
+# field is a validation error when secrets-sync.sh runs.
+
+app = "skyback"
+worker = "skyback"
+
+[onepassword]
+vault = "_code_secrets"
+item = "app.skyback"
+
+[github]
+repo = "sevitz/skyback"
+
+# The in-app bug-report button uses the family's one shared fine-grained PAT,
+# not a token of its own. Remember the manual step: add sevitz/skyback to that
+# PAT's repository access list on GitHub, or reports 404.
+[worker_source]
+GITHUB_ISSUES_TOKEN = "op://_code_secrets/app-ops/GITHUB_ISSUES_TOKEN"
+
+[secrets]
+# BSKY_HANDLE        your Bluesky handle, e.g. sev.bsky.social
+# BSKY_APP_PASSWORD  a Bluesky app password (Settings > Privacy and security >
+#                    App passwords), never the account password. Revocable on
+#                    its own if this Worker is ever compromised.
+worker = ["BSKY_HANDLE", "BSKY_APP_PASSWORD", "GITHUB_ISSUES_TOKEN"]
+backup = []
+github = []
+d1_settings = []
+ignore = ["username", "credential", "notesPlain"]
+
+[migrations]
+dir = "migrations"
+
+[backup]
+enabled = false

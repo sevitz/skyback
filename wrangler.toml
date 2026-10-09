@@ -1,0 +1,67 @@
+name = "skyback"
+main = "src/worker/index.js"
+compatibility_date = "2026-10-01"
+account_id = "02de5cf85a7d4577774c108705a3a8f5"
+
+routes = [
+  { pattern = "skyback.sevitz.com", custom_domain = true }
+]
+
+# Mandatory for the family sign-on: a *.workers.dev host cannot receive the
+# .sevitz.com identity cookie, so it would serve an app nobody can sign in to.
+workers_dev = false
+
+# One cron trigger, once a day (05:17 UTC) as a safety net: the page catches up on
+# its own when you open it, and "Search further back" goes older on demand. The
+# free plan allows 5 cron triggers per account, shared with the backup Workers. Every run is small on purpose: 10ms CPU and 50 subrequests per
+# invocation on the free plan. See docs/PROJECT-JOURNAL.md, "The free plan".
+[triggers]
+crons = ["17 5 * * *"]
+
+# The page script lives in its own file for readability and is served as text,
+# never bundled. .html is a Text module by default; this adds *.client.js.
+[[rules]]
+type = "Text"
+globs = ["**/*.client.js"]
+fallthrough = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "skyback"
+database_id = "3dd5393d-f9e3-4960-9baf-a39226b5db8a"
+migrations_dir = "migrations"
+
+# Non-secret config. Secrets never go in this file -- see app-ops.toml.
+[vars]
+AUTH_ISSUER = "https://auth.sevitz.com"
+AUTH_APP = "skyback"
+GITHUB_REPO = "sevitz/skyback"
+
+# Where createSession and refreshSession go. Data calls go to the PDS named in
+# the account's DID document, which the session response carries.
+BSKY_SERVICE = "https://bsky.social"
+
+# skyback's own share of the account-wide D1 free allowance (5M rows read and
+# 100k rows written a day, shared by every app). Since 2026-09-01 going over that
+# allowance fails every D1 query on the account until midnight UTC, auth
+# included, so skyback stops itself well short of it.
+DAILY_WRITE_BUDGET = "40000"
+DAILY_READ_BUDGET = "1500000"
+
+# Per run work caps, sized for the free plan's 10ms CPU per invocation.
+# Measured with tools/bench.js: parsing and normalising a realistic page costs
+# about 2ms per 100 items warm and 4 to 7ms cold, so a run handles at most 100
+# items in pages of 50. On Workers Paid these can all go up.
+TIMELINE_PAGE_SIZE = "50"
+MAX_ITEMS_PER_RUN = "100"
+MAX_FETCHES_PER_RUN = "12"
+CATCHUP_MAX_PAGES = "3"
+
+# Other feeds you switch on in the page are fetched at most this often, one page
+# each time.
+FEED_INTERVAL_MINUTES = "30"
+FEED_PAGE_SIZE = "50"
+
+# 0 keeps everything. The free plan caps a D1 database at 500 MB; the status
+# line on the page shows the current size.
+RETENTION_DAYS = "0"

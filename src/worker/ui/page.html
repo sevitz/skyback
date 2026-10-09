@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>skyback</title>
+{{ICON_LINKS}}
+<style>
+:root {
+  --bg: #f7f8fa;
+  --card: #ffffff;
+  --ink: #15181c;
+  --muted: #5f6b7a;
+  --line: #e3e7ec;
+  --accent: #1083fe;
+  --accent-ink: #ffffff;
+  --mark: #fff1a8;
+  --mark-ink: #15181c;
+  --warn: #9a5b00;
+  --warn-bg: #fff4e0;
+  --bad: #b42318;
+  --radius: 12px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1116;
+    --card: #161b22;
+    --ink: #e8edf2;
+    --muted: #93a1b0;
+    --line: #262e38;
+    --accent: #4aa3ff;
+    --accent-ink: #06121f;
+    --mark: #5b4a00;
+    --mark-ink: #fff6cc;
+    --warn: #ffcc80;
+    --warn-bg: #2b2112;
+    --bad: #ff8a80;
+  }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); }
+body { font: 16px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+.wrap { max-width: 720px; margin: 0 auto; padding: 20px 16px 80px; }
+header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin: 8px 0 16px; padding-right: 120px; }
+header h1 { margin: 0; font-size: 26px; letter-spacing: -0.02em; }
+header h1 span { color: var(--accent); }
+header p { margin: 0; color: var(--muted); font-size: 14px; }
+form { display: grid; gap: 10px; }
+.searchrow { display: flex; gap: 8px; }
+input[type=search] {
+  flex: 1; min-width: 0; font: inherit; font-size: 17px; padding: 12px 14px;
+  border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); color: var(--ink);
+}
+input[type=search]:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+select, button {
+  font: inherit; font-size: 13px; height: 32px; padding: 0 12px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer;
+}
+select { appearance: none; -webkit-appearance: none; padding-right: 26px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' stroke='%2393a1b0' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 10px center; }
+select:focus-visible, button:focus-visible { outline: 2px solid color-mix(in srgb, var(--accent) 45%, transparent); outline-offset: 1px; }
+.fsel { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.fsel select { color: var(--ink); }
+button.accent { border-color: var(--accent); color: var(--accent); background: transparent; font-weight: 600; }
+button.primary { background: var(--accent); color: var(--accent-ink); border-color: transparent; font-weight: 600; }
+button:disabled { opacity: .6; cursor: default; }
+.spacer { flex: 1; }
+.statusbar { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; margin: 0 0 14px; color: var(--muted); font-size: 13px; }
+.statusbar button { height: 26px; font-size: 12px; padding: 0 10px; }
+.demo-note { margin: 0 0 14px; padding: 10px 14px; border-radius: var(--radius); background: color-mix(in srgb, var(--accent) 12%, var(--card)); color: var(--ink); font-size: 14px; }
+.demo-note a { color: var(--accent); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips button { height: 28px; font-size: 12px; color: var(--muted); }
+.bf { margin: 14px 0 0; padding: 10px 14px; border-radius: var(--radius); background: color-mix(in srgb, var(--accent) 12%, var(--card)); font-size: 14px; }
+.bf.prompt { background: var(--warn-bg); color: var(--warn); }
+.bf .bar { height: 4px; border-radius: 2px; background: var(--card); margin-top: 8px; overflow: hidden; }
+.bf .bar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .3s; }
+.bf .acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.bf .acts button { height: 28px; font-size: 12px; }
+details.tips { color: var(--muted); font-size: 14px; }
+details.tips summary { cursor: pointer; }
+details.tips code { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 0 5px; }
+details.tips ul { margin: 6px 0 0; padding-left: 18px; }
+.notice { margin: 14px 0 0; padding: 10px 14px; border-radius: var(--radius); background: var(--warn-bg); color: var(--warn); font-size: 14px; }
+.notice.bad { color: var(--bad); }
+#feeds-panel { margin-top: 14px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+#feeds-panel h2 { font-size: 16px; margin: 0 0 4px; }
+#feeds-panel p.hint { margin: 0 0 10px; color: var(--muted); font-size: 14px; }
+.feed { display: grid; grid-template-columns: auto 32px 1fr auto; gap: 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); }
+.feed:first-of-type { border-top: 0; }
+.feed img, .feed .noimg { width: 32px; height: 32px; border-radius: 8px; object-fit: cover; background: var(--line); }
+.feed .name { font-weight: 600; font-size: 15px; }
+.feed .meta { color: var(--muted); font-size: 13px; }
+.feed .meta.bad { color: var(--bad); }
+.feed input { width: 18px; height: 18px; accent-color: var(--accent); }
+.feed.unsaved .name::after { content: " (no longer saved)"; font-weight: 400; color: var(--muted); }
+#summary { margin: 18px 2px 8px; color: var(--muted); font-size: 14px; min-height: 20px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; margin-bottom: 10px; }
+.card .seen { color: var(--muted); font-size: 13px; margin-bottom: 6px; }
+.card .who { display: flex; gap: 10px; align-items: center; min-width: 0; }
+.card .who img, .card .who .noimg { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background: var(--line); flex: none; }
+.card .who .names { min-width: 0; line-height: 1.25; }
+.card .who .name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; }
+.card .who .handle { color: var(--muted); font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; }
+.card .who a { color: inherit; text-decoration: none; }
+.card .when { margin-left: auto; color: var(--muted); font-size: 13px; white-space: nowrap; }
+.card .text { margin: 10px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.card .extra { margin: 8px 0 0; color: var(--muted); font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+mark { background: var(--mark); color: var(--mark-ink); border-radius: 3px; padding: 0 1px; }
+.thumbs { display: flex; gap: 6px; margin-top: 10px; overflow-x: auto; }
+.thumbs img { height: 110px; max-width: 220px; border-radius: 8px; object-fit: cover; background: var(--line); }
+.linkcard, .quote { display: block; margin-top: 10px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; color: inherit; text-decoration: none; }
+.linkcard .t { font-weight: 600; font-size: 15px; }
+.linkcard .d, .linkcard .u, .quote .q { color: var(--muted); font-size: 14px; overflow-wrap: anywhere; }
+.quote .qh { font-size: 14px; font-weight: 600; }
+.quote .q { white-space: pre-wrap; }
+.card .foot { display: flex; gap: 14px; margin-top: 10px; color: var(--muted); font-size: 13px; }
+.card .foot a { color: var(--accent); text-decoration: none; font-weight: 600; margin-left: auto; }
+#more { display: block; margin: 16px auto; }
+footer { margin-top: 28px; color: var(--muted); font-size: 13px; display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+footer a { color: var(--muted); }
+.empty { text-align: center; color: var(--muted); padding: 30px 10px; }
+@media (max-width: 520px) {
+  header { padding-right: 0; margin-top: 44px; }
+}
+</style>
+</head>
+<body{{BODY_ATTR}}>
+<div class="wrap">
+  <header>
+    <h1>sky<span>back</span></h1>
+    <p>Search what went through your Bluesky feeds</p>
+  </header>
+
+  <!--owner:start-->
+  <div class="statusbar">
+    <span id="status">Loading…</span>
+    <button type="button" id="sync-now">Sync now</button>
+  </div>
+  <!--owner:end-->
+  <!--demo:start-->
+  <div class="demo-note">This is a demo using posts from <a href="https://bsky.app/profile/theonion.com" target="_blank" rel="noopener">The Onion's public Bluesky feed</a>, not anyone's own timeline. The real thing searches the timeline you read. <a href="{{GITHUB_URL}}" target="_blank" rel="noopener">See the code on GitHub</a></div>
+  <!--demo:end-->
+
+  <form id="search" role="search">
+    <div class="searchrow">
+      <label for="q" hidden>Search</label>
+      <input id="q" name="q" type="search" autocomplete="off" autofocus
+             placeholder="Words you remember, &quot;a phrase&quot;, from:someone">
+    </div>
+    <!--owner:start-->
+    <div class="filters">
+      <label class="fsel"><span>Feed</span><select id="feed" name="feed"><option value="">All</option></select></label>
+      <label class="fsel"><span>When</span><select id="posted" name="posted">
+        <option value="">Any time</option>
+        <option value="1">Past day</option>
+        <option value="7">Past week</option>
+        <option value="30">Past month</option>
+        <option value="365">Past year</option>
+      </select></label>
+      <label class="fsel"><span>Order</span><select id="sort" name="sort">
+        <option value="best">Best match</option>
+        <option value="new">Newest first</option>
+      </select></label>
+      <span class="spacer"></span>
+      <button type="button" id="feeds-btn" aria-expanded="false" aria-controls="feeds-panel">Feeds</button>
+      <button type="button" id="back-btn" class="accent">Search further back</button>
+    </div>
+    <!--owner:end-->
+    <!--demo:start-->
+    <div class="chips" id="chips" aria-label="Example searches"></div>
+    <details class="tips">
+      <summary>Search tips</summary>
+      <ul>
+        <li>Every word must appear. Longer words also match their start.</li>
+        <li><code>"exact phrase"</code>, <code>-leave_out</code>, <code>from:handle</code>, <code>has:image</code>, <code>has:link</code>, <code>since:2026-10-01</code>, <code>until:2026-10-08</code></li>
+      </ul>
+    </details>
+    <!--demo:end-->
+    <!--owner:start-->
+    <details class="tips">
+      <summary>Search tips</summary>
+      <ul>
+        <li>Every word must appear. Longer words also match their start, so <code>remem</code> finds remember.</li>
+        <li><code>"exact phrase"</code>, <code>-leave_out</code>, <code>this OR that</code></li>
+        <li><code>from:handle</code> by someone, matching their handle or display name</li>
+        <li><code>has:image</code>, <code>has:video</code>, <code>has:link</code>, <code>has:quote</code>, <code>-has:reply</code></li>
+        <li><code>since:2026-10-01</code> <code>until:2026-10-08</code> by the post's date</li>
+        <li>Image alt text, link cards, quoted posts and full link addresses are searched too. Leave the box empty to browse the newest posts.</li>
+      </ul>
+    </details>
+    <!--owner:end-->
+  </form>
+
+  <!--owner:start-->
+  <div id="notices"></div>
+
+  <div id="backfill" class="bf" hidden aria-live="polite">
+    <div id="bf-text"></div>
+    <div class="bar" id="bf-barwrap" hidden><i id="bf-bar"></i></div>
+    <div class="acts" id="bf-actions"></div>
+  </div>
+
+  <section id="feeds-panel" hidden>
+    <h2>Feeds to archive</h2>
+    <p class="hint">Following is always archived. Switch on any of your saved feeds to keep what they show you too; each is checked every half hour.</p>
+    <div id="feeds-list"></div>
+    <div class="filters" style="margin-top:10px">
+      <button type="button" id="reload-feeds">Reload my saved feeds</button>
+      <span class="hint" id="feeds-note" style="color:var(--muted);font-size:13px"></span>
+    </div>
+  </section>
+  <!--owner:end-->
+
+  <div id="summary" aria-live="polite"></div>
+  <main id="results"></main>
+  <button type="button" id="more" hidden>More</button>
+
+  <footer>
+    <span>v{{VERSION}}</span>
+    <a href="{{GITHUB_URL}}" target="_blank" rel="noopener">GitHub</a>
+  </footer>
+</div>
+{{DEMO_DATA}}<script src="{{APP_SRC}}?v={{VERSION}}" defer></script>
+{{BUG_REPORT_SCRIPT}}
+{{WHOAMI_SCRIPT}}
+</body>
+</html>
