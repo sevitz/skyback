@@ -120,10 +120,19 @@ test('public routes: health and icons', async () => {
   await ico.arrayBuffer();
 });
 
-test('signed out: the page bounces to the portal, the API says 401', async () => {
+test('signed out: the front page lands on the demo, /login goes to the portal, the API says 401', async () => {
   const page = await get('/');
   assert.equal(page.status, 302);
-  assert.match(page.headers.get('location'), /^https:\/\/auth\.sevitz\.com\/login\?next=https%3A%2F%2Fskyback\.sevitz\.com%2F&app=skyback$/);
+  assert.equal(page.headers.get('location'), 'https://skyback.sevitz.com/demo');
+  const login = await get('/login');
+  assert.equal(login.status, 302);
+  assert.match(login.headers.get('location'), /^https:\/\/auth\.sevitz\.com\/login\?next=https%3A%2F%2Fskyback\.sevitz\.com%2Flogin&app=skyback$/);
+  const lapsed = await get('/', { cookie: 'not-a-token' });
+  assert.equal(lapsed.status, 302);
+  assert.match(lapsed.headers.get('location'), /^https:\/\/auth\.sevitz\.com\/login\?next=https%3A%2F%2Fskyback\.sevitz\.com%2F&app=skyback$/, 'a stale cookie still renews through the portal');
+  const back = await get('/login', { cookie: await sev() });
+  assert.equal(back.status, 302);
+  assert.equal(back.headers.get('location'), 'https://skyback.sevitz.com/');
   const api = await get('/api/status');
   assert.equal(api.status, 401);
   assert.equal((await api.json()).error, 'Not signed in');
@@ -151,7 +160,7 @@ test('the page, its script and the corner widgets', async () => {
   assert.match(html, new RegExp(`v${pkg.version.replace(/\./g, '\\.')}`));
   assert.match(html, /<script src="\/app\.js\?v=/);
   for (const id of ['sync-now', 'feeds-btn', 'back-btn', 'feed', 'posted', 'sort', 'backfill', 'status']) assert.match(html, new RegExp(`id="${id}"`));
-  assert.doesNotMatch(html, /data-demo/);
+  assert.doesNotMatch(html, /data-demo|class="demo-pill"/);
   assert.match(html, /href="https:\/\/github\.com\/sevitz\/skyback"/);
   assert.match(html, /bug-report-widget\.js/);
   assert.match(html, /whoami-widget\.js/);
@@ -174,6 +183,7 @@ test('the demo is public, holds no owner controls, and touches no data', async (
   assert.match(page.headers.get('cache-control'), /public/);
   const html = await page.text();
   assert.match(html, /data-demo="1"/);
+  assert.match(html, /class="demo-pill"><span>demo<\/span><a href="\/login">login<\/a>/);
   assert.match(html, /id="demo-data"/);
   assert.match(html, /<script src="\/demo\/app\.js\?v=/);
   for (const id of ['sync-now', 'feeds-btn', 'back-btn', 'feeds-panel', 'feed', 'posted', 'sort', 'backfill', 'status', 'notices']) {

@@ -173,6 +173,22 @@ async function handle(request, env) {
     });
   }
 
+  // ---- the front door ----
+  // A signed-out visitor to the front page lands on the public demo, whose "demo |
+  // login" pill leads to /login. Anyone holding a sev_id cookie, even a lapsed one,
+  // still goes through the portal, which renews it without a prompt: the page's
+  // 401 handler (a reload) relies on that.
+  if (path === '/' && request.method === 'GET' && !/(?:^|;\s*)sev_id=/.test(request.headers.get('cookie') || '')) {
+    return Response.redirect(`${url.origin}/demo`, 302);
+  }
+  // The pill's target: signed out goes to the portal and returns here, signed in
+  // carries on to the app.
+  if (path === '/login' && request.method === 'GET') {
+    const signedIn = await requireIdentity(request, env, { json: false });
+    if (signedIn instanceof Response) return signedIn;
+    return Response.redirect(`${url.origin}/`, 302);
+  }
+
   // ---- identity ----
   const isApi = path.startsWith('/api/');
   const who = await requireIdentity(request, env, { json: isApi });

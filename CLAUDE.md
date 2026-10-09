@@ -41,6 +41,11 @@ workerd smoke test through Miniflare.
 
 ## Login / auth
 
+Signed-out visitors to `/` are redirected to `/demo` (unless they carry a `sev_id` cookie, even a
+lapsed one: those still go through the portal, which renews it silently, and the page's 401
+handler reloads on that). The demo's `demo | login` pill links to `/login`, which sends a
+signed-out visitor to the portal with `next=/login` and a signed-in one on to `/`.
+
 Family sign-on via `auth.sevitz.com`: `[vars] AUTH_ISSUER` and `AUTH_APP = "skyback"`,
 vendored `src/worker/auth-client/`, `requireIdentity()`. On top of "may enter skyback",
 the app requires `role === 'admin'`, because this is one person's reading history. POSTs

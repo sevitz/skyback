@@ -68,6 +68,18 @@ app-ops.toml         secrets manifest for app-ops's secrets-sync.sh
 
 ## 5. Version history (what & why)
 
+### 2026-10-09 -- v0.2.1 -- front door lands on the demo, login pill
+
+Asked for: signed-out visitors go straight to `/demo`, with a `demo | login` pill top left
+that leads to login. `/` now redirects to `/demo` when there is no `sev_id` cookie. A stale
+cookie still goes through the portal on purpose: the page's 401 handler reloads, and the
+portal renews a lapsed identity without a prompt, so sending those visitors to the demo
+would have made every expired session look like a logout. `/login` is the new public route
+the pill links to: signed out it returns the portal redirect with `next=/login`, signed in it
+redirects to `/`. Without it the pill would loop, since `/` no longer reaches the portal.
+The commit identity in this repo is set to the GitHub noreply address because the repo is
+public.
+
 ### 2026-10-09 -- v0.2.0 -- Search further back, public demo, new icon, public repo
 
 Asked for: the status line at the top where it can be seen; no continuous background

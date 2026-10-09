@@ -17,7 +17,8 @@ as image alt text, link cards and quoted posts.
 
 A public demo that searches sample posts (from The Onion's public Bluesky feed, not
 anyone's own timeline) is at [skyback.sevitz.com/demo](https://skyback.sevitz.com/demo). It
-needs no sign-in and touches no database.
+needs no sign-in and touches no database. Visiting the front page signed out lands there too,
+and its `demo | login` pill (top left) leads to the sign-on.
 
 ## What it pulls down, and when
 
@@ -158,6 +159,7 @@ All behind the family sign-on (admin only). POSTs need `Origin: https://skyback.
 | `POST /api/sync` | run a sync now |
 | `POST /api/backfill/step` `{ target? }` | one small step of Search further back |
 | `GET /demo` | public demo page (no sign-in, no database) |
+| `GET /login` | signed out: to the sign-on and back; signed in: on to the app |
 
 ## Bug reports
 
