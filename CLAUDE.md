@@ -135,8 +135,9 @@ Bluesky's timeline cursor is a plain ISO time. The edge is the cursor, not
 `MIN(created_at)`, because a repost carries its original post's date.
 
 **The vendored `whoami` copy is trimmed.** The family version lists every household
-member; this repo is public, so only the owner is kept. Re-running app-ops's
-`lib-sync.sh` restores the full roster: do not let that happen here.
+member; this repo is public, so only the owner is kept. `app-ops.toml` sets
+`whoami_people = ["sev"]`, which makes app-ops's `lib-sync.sh` write the trimmed file, so
+re-running it is safe. Keep that setting; without it the full roster comes back.
 
 **Page content is untrusted.** The page script builds everything with `textContent`;
 highlights come back as `\u0001`/`\u0002` markers and are turned into `<mark>` nodes. No

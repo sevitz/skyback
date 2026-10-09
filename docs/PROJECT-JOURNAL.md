@@ -69,6 +69,18 @@ app-ops.toml         secrets manifest for app-ops's secrets-sync.sh
 
 ## 5. Version history (what & why)
 
+### 2026-10-09 -- `whoami_people` replaces the hand trim (no version bump)
+
+The vendored `whoami` copy used to be trimmed to the owner by hand, and re-running
+app-ops's `lib-sync.sh` would have restored the whole household roster. app-ops now has an
+optional `whoami_people` key in `app-ops.toml`, and this repo's `app-ops.toml` sets
+`whoami_people = ["sev"]`. `lib-sync.sh` (check and `--install`) renders the trimmed
+file itself, byte-identical to the old hand trim, so re-running it here is safe and the
+trim is no longer a manual step. The setting must stay in `app-ops.toml`. The "would
+restore" wording in the trim note inside `src/worker/whoami/index.js` is generated text and
+is now out of date; it was left as is so the file stays identical to what `lib-sync.sh`
+writes.
+
 ### 2026-10-09 -- v0.2.1 -- front door lands on the demo, login pill
 
 Asked for: signed-out visitors go straight to `/demo`, with a `demo | login` pill top left
@@ -223,8 +235,6 @@ accepts it, and it lets Node import the same module in tests.
 
 - How far back getTimeline will page is not documented; Search further back will show,
   and stops with "Reached the start of what Bluesky will show".
-- app-ops's `whoami` source still lists the whole household; make the roster configurable
-  there so a public repo can vendor it without a hand trim.
 - An MCP endpoint, crawlbot and recaipe style, so Claude can search the archive directly.
 - Optional: list skyback in auth's `KNOWN_APPS` / `APP_ORDER` for a hub tab.
 - Optional: Bluesky OAuth instead of an app password.
