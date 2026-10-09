@@ -8,6 +8,10 @@
 app = "skyback"
 worker = "skyback"
 
+# This repo is public. Vendor the whoami library with only the owner's entry, so
+# lib-sync.sh never writes the household roster here. See app-ops's CLAUDE.md.
+whoami_people = ["sev"]
+
 [onepassword]
 vault = "_code_secrets"
 item = "app.skyback"

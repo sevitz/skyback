@@ -38,8 +38,8 @@ line at the top, Search further back instead of continuous backfill, daily cron,
 1. Create a Bluesky app password (Settings, Privacy and security, App passwords).
 2. Create 1Password item `app.skyback` in `_code_secrets` with fields `BSKY_HANDLE` and
    `BSKY_APP_PASSWORD`.
-3. In Cloudflare, create the Worker by connecting Workers Builds to `sevitz/skyback`
-   (root directory `/`), or run `npm run deploy` once.
+3. Create the Worker by running `npm run deploy` once. (Workers Builds is not connected to
+   the repo; connecting it in Cloudflare would make pushes deploy, but nothing relies on it.)
 4. From the repo: `zsh ~/Code/app-ops/bin/migrate.sh remote`, then
    `zsh ~/Code/app-ops/bin/secrets-sync.sh`.
 5. Add `sevitz/skyback` to the shared `GITHUB_ISSUES_TOKEN` PAT's repository access list,
@@ -74,8 +74,8 @@ dashes. Shared libraries vendored with `lib-sync.sh`; do not edit `auth-client/`
 
 ## Deploy and commit workflow
 
-Push to `main`; Workers Builds deploys. Migrations only by `migrate.sh remote`, never on
-push. Secrets only by `secrets-sync.sh`. Before pushing: `npm test` and `npm run smoke`.
+Push to `main`, then run `npm run deploy`: a push alone does not deploy. Migrations only by
+`migrate.sh remote`, never on deploy. Secrets only by `secrets-sync.sh`. Before pushing: `npm test` and `npm run smoke`.
 
 ## Gotchas and intentional oddities
 

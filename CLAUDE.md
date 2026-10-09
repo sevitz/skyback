@@ -37,7 +37,8 @@ workerd smoke test through Miniflare.
 - `npm run dev` -- `wrangler dev`, needs the secrets in `.dev.vars`
 - `zsh ~/Code/app-ops/bin/secrets-sync.sh [--check|--drift]`
 - `zsh ~/Code/app-ops/bin/migrate.sh <local|remote> [--check]`
-- Deploy: push to `main` (Workers Builds). `npm run deploy` is the manual fallback.
+- Deploy: `npm run deploy`, after pushing to `main`. A push does not deploy: Workers Builds is not
+  connected to this repo (checked 2026-10-09, nothing deployed minutes after a push).
 
 ## Login / auth
 

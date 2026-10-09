@@ -60,8 +60,9 @@ app-ops.toml         secrets manifest for app-ops's secrets-sync.sh
 
 1. `npm test` and `npm run smoke`.
 2. Bump `version` in `package.json`, add an entry below, update `docs/HANDOVER.md`.
-3. Push to `main`. Workers Builds deploys (root directory `/`).
-4. Migrations are never applied by a push: `zsh ~/Code/app-ops/bin/migrate.sh remote`.
+3. Push to `main`, then `npm run deploy`. A push alone does not deploy: Workers Builds is
+   not connected to this repo (confirmed 2026-10-09; the repo was also recreated that day).
+4. Migrations are never applied by a push or a deploy: `zsh ~/Code/app-ops/bin/migrate.sh remote`.
 5. Secrets change only through 1Password and `secrets-sync.sh`.
 
 ---
@@ -78,7 +79,9 @@ would have made every expired session look like a logout. `/login` is the new pu
 the pill links to: signed out it returns the portal redirect with `next=/login`, signed in it
 redirects to `/`. Without it the pill would loop, since `/` no longer reaches the portal.
 The commit identity in this repo is set to the GitHub noreply address because the repo is
-public.
+public. A Cloudflare rate-limiting rule (one free-plan rule: 30 requests per 10 seconds per IP
+on `/demo`, block for 10 seconds) was turned on for the zone the same day. It is configured in
+the Cloudflare dashboard, not in this repo, so it is recorded here.
 
 ### 2026-10-09 -- v0.2.0 -- Search further back, public demo, new icon, public repo
 
@@ -212,7 +215,7 @@ accepts it, and it lets Node import the same module in tests.
 2. Check the open items below and the repo's Issues.
 3. Test changes for real: `npm test`, `npm run smoke`, and `tools/preview.js` plus a look
    at the page for anything visual.
-4. Commit and push after every change; Workers Builds deploys off pushes to `main`.
+4. Commit and push after every change, then `npm run deploy` (a push alone does not deploy).
 
 ---
 
