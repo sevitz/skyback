@@ -69,6 +69,11 @@ app-ops.toml         secrets manifest for app-ops's secrets-sync.sh
 
 ## 5. Version history (what & why)
 
+### 2026-10-10 -- v0.3.1 -- wordmark back to its original colours
+
+The wordmark sits on a white (card coloured) tab on the band, "sky" in ink and "back" in
+the accent blue, as before v0.3.0. `DESIGN.md` and its sidecar refreshed to the Sky look.
+
 ### 2026-10-10 -- v0.3.0 -- "Sky" look
 
 Page restyle only, in `src/worker/ui/page.html`; no script, route or data change. A

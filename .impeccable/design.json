@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-10T19:56:36Z",
+  "generatedAt": "2026-10-10T20:09:00Z",
   "title": "Design System: skyback",
   "extensions": {
     "colorMeta": {
@@ -36,8 +36,8 @@
       },
       "paper": {
         "role": "neutral",
-        "displayName": "Cool Paper",
-        "canonical": "#f7f8fa",
+        "displayName": "Sky Paper",
+        "canonical": "#eef4fb",
         "tonalRamp": [
           "#1d232f",
           "#313b4e",
@@ -127,7 +127,7 @@
       "hairline": {
         "role": "neutral",
         "displayName": "Hairline",
-        "canonical": "#e3e7ec",
+        "canonical": "#d6e3f3",
         "tonalRamp": [
           "#1f252e",
           "#343e4c",
@@ -183,6 +183,21 @@
           "#f7c8c4",
           "#fceae8"
         ]
+      },
+      "band-blue": {
+        "role": "primary",
+        "displayName": "Band Blue",
+        "canonical": "#0a6ddf",
+        "tonalRamp": [
+          "#00254c",
+          "#013e7f",
+          "#0156b2",
+          "#016fe5",
+          "#3496fe",
+          "#80bdfe",
+          "#bdddff",
+          "#e6f2ff"
+        ]
       }
     },
     "typographyMeta": {
@@ -216,12 +231,20 @@
   },
   "components": [
     {
-      "name": "Search input",
+      "name": "Wordmark tab",
+      "kind": "nav",
+      "refersTo": "wordmark-tab",
+      "description": "White tab on the blue band: ink sky, signal-blue back.",
+      "html": "<div class=\"ds-band\"><h1 class=\"ds-wm\">sky<span>back</span></h1></div>",
+      "css": ".ds-band{background:#0a6ddf;padding:16px}.ds-wm{display:inline-block;margin:0;font:700 26px/1.45 system-ui,sans-serif;letter-spacing:-0.02em;color:#15181c;background:#fff;padding:2px 14px 4px;border-radius:14px}.ds-wm span{color:#1083fe}"
+    },
+    {
+      "name": "Search card",
       "kind": "input",
-      "refersTo": "search-input",
-      "description": "The main control: large, bordered, signal-blue focus ring.",
-      "html": "<input class=\"ds-search\" type=\"search\" placeholder=\"Words you remember, &quot;a phrase&quot;, from:someone\">",
-      "css": ".ds-search{width:100%;font:17px/1.45 system-ui,sans-serif;padding:12px 14px;border:1px solid #e3e7ec;border-radius:12px;background:#fff;color:#15181c}.ds-search:focus{outline:2px solid #1083fe;outline-offset:1px;border-color:transparent}"
+      "refersTo": "search-card",
+      "description": "White card holding the 20px query line; signal-blue focus ring on the card.",
+      "html": "<div class=\"ds-sc\"><input class=\"ds-search\" type=\"search\" placeholder=\"Words you remember, &quot;a phrase&quot;, from:someone\"></div>",
+      "css": ".ds-sc{background:#fff;border:1px solid #d6e3f3;border-radius:18px;padding:14px}.ds-sc:has(input:focus){outline:2px solid #1083fe;outline-offset:2px}.ds-search{width:100%;font:20px/1.45 system-ui,sans-serif;padding:4px 2px 10px;border:0;border-bottom:1px solid #d6e3f3;background:transparent;color:#15181c}.ds-search:focus{outline:none}.ds-search::placeholder{font-size:16px}"
     },
     {
       "name": "Button",
@@ -229,7 +252,7 @@
       "refersTo": "button",
       "description": "Default small pill button.",
       "html": "<button class=\"ds-btn\">Feeds</button>",
-      "css": ".ds-btn{font:13px/1.45 system-ui,sans-serif;height:32px;padding:0 12px;border-radius:999px;border:1px solid #e3e7ec;background:#fff;color:#15181c;cursor:pointer}.ds-btn:focus-visible{outline:2px solid rgba(16,131,254,.45);outline-offset:1px}"
+      "css": ".ds-btn{font:13px/1.45 system-ui,sans-serif;height:32px;padding:0 12px;border-radius:999px;border:1px solid #d6e3f3;background:#fff;color:#15181c;cursor:pointer}.ds-btn:focus-visible{outline:2px solid rgba(16,131,254,.45);outline-offset:1px}"
     },
     {
       "name": "Accent button",
@@ -237,7 +260,7 @@
       "refersTo": "button-accent",
       "description": "Outlined signal-blue pill for the main secondary action.",
       "html": "<button class=\"ds-btn ds-btn-accent\">Search further back</button>",
-      "css": ".ds-btn{font:13px/1.45 system-ui,sans-serif;height:32px;padding:0 12px;border-radius:999px;border:1px solid #e3e7ec;background:#fff;color:#15181c;cursor:pointer}.ds-btn:focus-visible{outline:2px solid rgba(16,131,254,.45);outline-offset:1px}.ds-btn-accent{border-color:#1083fe;color:#1083fe;background:transparent;font-weight:600}"
+      "css": ".ds-btn{font:13px/1.45 system-ui,sans-serif;height:32px;padding:0 12px;border-radius:999px;border:1px solid #d6e3f3;background:#fff;color:#15181c;cursor:pointer}.ds-btn:focus-visible{outline:2px solid rgba(16,131,254,.45);outline-offset:1px}.ds-btn-accent{border-color:#1083fe;color:#1083fe;background:transparent;font-weight:600}"
     },
     {
       "name": "Primary button",
@@ -245,7 +268,7 @@
       "refersTo": "button-primary",
       "description": "Filled signal-blue pill.",
       "html": "<button class=\"ds-btn ds-btn-primary\">Sync now</button>",
-      "css": ".ds-btn{font:13px/1.45 system-ui,sans-serif;height:32px;padding:0 12px;border-radius:999px;border:1px solid #e3e7ec;background:#fff;color:#15181c;cursor:pointer}.ds-btn:focus-visible{outline:2px solid rgba(16,131,254,.45);outline-offset:1px}.ds-btn-primary{background:#1083fe;color:#fff;border-color:transparent;font-weight:600}"
+      "css": ".ds-btn{font:13px/1.45 system-ui,sans-serif;height:32px;padding:0 12px;border-radius:999px;border:1px solid #d6e3f3;background:#fff;color:#15181c;cursor:pointer}.ds-btn:focus-visible{outline:2px solid rgba(16,131,254,.45);outline-offset:1px}.ds-btn-primary{background:#1083fe;color:#fff;border-color:transparent;font-weight:600}"
     },
     {
       "name": "Chip",
@@ -253,7 +276,7 @@
       "refersTo": "chip",
       "description": "Muted example-search pill on the demo.",
       "html": "<button class=\"ds-chip\">climate</button>",
-      "css": ".ds-chip{font:12px/1.45 system-ui,sans-serif;height:28px;padding:0 12px;border-radius:999px;border:1px solid #e3e7ec;background:#fff;color:#5f6b7a;cursor:pointer}"
+      "css": ".ds-chip{font:12px/1.45 system-ui,sans-serif;height:28px;padding:0 12px;border-radius:999px;border:1px solid #d6e3f3;background:#fff;color:#5f6b7a;cursor:pointer}"
     },
     {
       "name": "Post card",
@@ -261,7 +284,7 @@
       "refersTo": "post-card",
       "description": "A single archived post with a highlighted match.",
       "html": "<div class=\"ds-card\"><div class=\"ds-who\"><span class=\"ds-av\"></span><div><b>The Onion</b><div class=\"ds-h\">@theonion.com</div></div><span class=\"ds-when\">3d</span></div><p class=\"ds-text\">Area man swears he read it <mark>somewhere</mark> in his feed</p></div>",
-      "css": ".ds-card{font:16px/1.45 system-ui,sans-serif;background:#fff;border:1px solid #e3e7ec;border-radius:12px;padding:14px;color:#15181c}.ds-who{display:flex;gap:10px;align-items:center}.ds-av{width:36px;height:36px;border-radius:50%;background:#e3e7ec;flex:none}.ds-h{color:#5f6b7a;font-size:14px}.ds-when{margin-left:auto;color:#5f6b7a;font-size:13px}.ds-text{margin:10px 0 0}.ds-card mark{background:#fff1a8;color:#15181c;border-radius:3px;padding:0 1px}"
+      "css": ".ds-card{font:16px/1.45 system-ui,sans-serif;background:#fff;border:1px solid #d6e3f3;border-radius:16px;padding:14px;color:#15181c}.ds-who{display:flex;gap:10px;align-items:center}.ds-av{width:36px;height:36px;border-radius:50%;background:#d6e3f3;flex:none}.ds-h{color:#5f6b7a;font-size:14px}.ds-when{margin-left:auto;color:#5f6b7a;font-size:13px}.ds-text{margin:10px 0 0}.ds-card mark{background:#fff1a8;color:#15181c;border-radius:3px;padding:0 1px}"
     },
     {
       "name": "Notice",
@@ -269,14 +292,15 @@
       "refersTo": "notice",
       "description": "Caution amber message strip.",
       "html": "<div class=\"ds-notice\">Some feeds could not be fetched. Try again shortly.</div>",
-      "css": ".ds-notice{font:14px/1.45 system-ui,sans-serif;padding:10px 14px;border-radius:12px;background:#fff4e0;color:#9a5b00}"
+      "css": ".ds-notice{font:14px/1.45 system-ui,sans-serif;padding:10px 14px;border-radius:16px;background:#fff4e0;color:#9a5b00}"
     }
   ],
   "narrative": {
     "northStar": "The Narrowing Search",
-    "overview": "skyback is used in loops: a half-remembered word goes in, a pile of posts comes back, and the next move is to refine. The search box and filters are the stable top of the page; results with marked matches sit directly below. The surface is flat, bordered and calm, with system type and a single Bluesky blue for things you can act on.",
+    "overview": "skyback is used in loops: a half-remembered word goes in, a pile of posts comes back, and the next move is to refine. A blue band carries the wordmark and status, and the search card overlaps its lower edge as the stable top of the page; results with marked matches sit directly below. The surface is flat and bordered, with system type and a single Bluesky blue for things you can act on.",
     "keyCharacteristics": [
-      "Search first: the input is the largest and first control.",
+      "Search first: the query sits in a card that overlaps the blue band.",
+      "The wordmark rides on a white tab: dark \"sky\", Signal Blue \"back\".",
       "Flat everywhere: borders, never shadows.",
       "One accent, used only on things you can act on or that have focus.",
       "Matched words are always visibly marked in results.",
@@ -287,7 +311,7 @@
     "rules": [
       {
         "name": "The One Signal Rule",
-        "body": "Signal blue marks what you can act on or what has focus. It is not used to decorate headings, borders or backgrounds beyond the 12% wash.",
+        "body": "Signal blue marks what you can act on or what has focus, plus the \"back\" of the wordmark. The only other blue is the band and the 12% wash.",
         "section": "colors"
       },
       {
@@ -302,7 +326,7 @@
       },
       {
         "name": "The Search Stays Put Rule",
-        "body": "The search box and its filters are the stable top of the page. Refining a query must never move them, collapse them, or clear what was typed.",
+        "body": "The search card and its filters are the stable top of the page. Refining a query must never move them, collapse them, or clear what was typed.",
         "section": "layout"
       },
       {
@@ -312,7 +336,7 @@
       }
     ],
     "dos": [
-      "Do keep the search box and filters at the top, unchanged, as the query is refined.",
+      "Do keep the search card directly under the band, unchanged, as the query is refined.",
       "Do mark every matched word in results with the highlighter.",
       "Do use hairlines and tonal steps to separate surfaces.",
       "Do define every color as a custom property with a dark counterpart, and keep the two modes structurally identical.",
@@ -322,7 +346,7 @@
     ],
     "donts": [
       "Don't add shadows, blurs, gradients or glass effects.",
-      "Don't use signal blue for decoration, or yellow for anything but a match.",
+      "Don't use signal blue for decoration beyond the wordmark, or yellow for anything but a match.",
       "Don't load web fonts or icon fonts.",
       "Don't put owner-only controls (Sync, Feeds, Search further back, status) in the demo markup.",
       "Don't make the interface louder than the posts it contains.",
