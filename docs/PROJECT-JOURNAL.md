@@ -69,6 +69,17 @@ app-ops.toml         secrets manifest for app-ops's secrets-sync.sh
 
 ## 5. Version history (what & why)
 
+### 2026-10-10 -- v0.3.0 -- "Sky" look
+
+Page restyle only, in `src/worker/ui/page.html`; no script, route or data change. A
+blue band (`--band`) holds the wordmark, status line and, on the demo, the note. The
+search box and its filters are one white rounded card that overlaps the band, with a
+larger query line (20px) and the focus ring on the card. Page and hairline tones are a
+little bluer, `--radius` is 16px. The wordmark's "back" is a pale blue because the
+accent blue would vanish on the band. No suggestion chips: the mock showed some, they
+are not built. `PRODUCT.md` and `DESIGN.md` added (DESIGN.md still describes the
+earlier look until refreshed).
+
 ### 2026-10-09 -- `whoami_people` replaces the hand trim (no version bump)
 
 The vendored `whoami` copy used to be trimmed to the owner by hand, and re-running

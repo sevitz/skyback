@@ -1,0 +1,332 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-10T19:56:36Z",
+  "title": "Design System: skyback",
+  "extensions": {
+    "colorMeta": {
+      "signal-blue": {
+        "role": "primary",
+        "displayName": "Bluesky Signal Blue",
+        "canonical": "#1083fe",
+        "tonalRamp": [
+          "#00254c",
+          "#013e7f",
+          "#0156b2",
+          "#016fe5",
+          "#3496fe",
+          "#80bdfe",
+          "#bdddff",
+          "#e6f2ff"
+        ]
+      },
+      "signal-blue-dark": {
+        "role": "primary",
+        "displayName": "Bluesky Signal Blue (dark)",
+        "canonical": "#4aa3ff",
+        "tonalRamp": [
+          "#00264c",
+          "#003f80",
+          "#0058b2",
+          "#0071e6",
+          "#3397ff",
+          "#80beff",
+          "#bdddff",
+          "#e5f2ff"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Cool Paper",
+        "canonical": "#f7f8fa",
+        "tonalRamp": [
+          "#1d232f",
+          "#313b4e",
+          "#45526e",
+          "#586a8d",
+          "#8191b1",
+          "#b1bace",
+          "#d6dbe5",
+          "#eff1f5"
+        ]
+      },
+      "paper-dark": {
+        "role": "neutral",
+        "displayName": "Cool Paper (dark)",
+        "canonical": "#0e1116",
+        "tonalRamp": [
+          "#1e242f",
+          "#323c4e",
+          "#45546d",
+          "#596c8c",
+          "#8293b0",
+          "#b1bccd",
+          "#d6dce5",
+          "#eff2f5"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Card White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#737373",
+          "#999999",
+          "#bfbfbf",
+          "#dedede",
+          "#f2f2f2"
+        ]
+      },
+      "card-dark": {
+        "role": "neutral",
+        "displayName": "Card White (dark)",
+        "canonical": "#161b22",
+        "tonalRamp": [
+          "#1e252e",
+          "#323d4d",
+          "#46566c",
+          "#5a6f8b",
+          "#8395af",
+          "#b2bdcd",
+          "#d7dde5",
+          "#f0f2f5"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#15181c",
+        "tonalRamp": [
+          "#21252c",
+          "#373e49",
+          "#4c5766",
+          "#627083",
+          "#8a97a8",
+          "#b6bec8",
+          "#d9dde3",
+          "#f0f2f4"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Quiet Slate",
+        "canonical": "#5f6b7a",
+        "tonalRamp": [
+          "#21262b",
+          "#383f48",
+          "#4e5864",
+          "#647181",
+          "#8c98a6",
+          "#b7bec7",
+          "#dadde2",
+          "#f1f2f4"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#e3e7ec",
+        "tonalRamp": [
+          "#1f252e",
+          "#343e4c",
+          "#48576a",
+          "#5d7089",
+          "#8597ad",
+          "#b3becb",
+          "#d8dde4",
+          "#f0f2f5"
+        ]
+      },
+      "highlight": {
+        "role": "functional",
+        "displayName": "Match Highlighter",
+        "canonical": "#fff1a8",
+        "tonalRamp": [
+          "#4c4000",
+          "#806b00",
+          "#b29600",
+          "#e6c100",
+          "#ffde33",
+          "#ffea80",
+          "#fff4bd",
+          "#fffbe5"
+        ]
+      },
+      "caution": {
+        "role": "functional",
+        "displayName": "Caution Amber",
+        "canonical": "#9a5b00",
+        "tonalRamp": [
+          "#4c2d00",
+          "#804b00",
+          "#b26900",
+          "#e68800",
+          "#ffac33",
+          "#ffcb80",
+          "#ffe4bd",
+          "#fff5e5"
+        ]
+      },
+      "error": {
+        "role": "functional",
+        "displayName": "Error Red",
+        "canonical": "#b42318",
+        "tonalRamp": [
+          "#440d09",
+          "#70160f",
+          "#9d1f15",
+          "#ca271b",
+          "#e7564b",
+          "#f0958f",
+          "#f7c8c4",
+          "#fceae8"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Wordmark",
+        "purpose": "The sky/back wordmark only."
+      },
+      "search": {
+        "displayName": "Search input",
+        "purpose": "The query box; 17px so it is the first control and avoids iOS zoom."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Post text."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "progress",
+        "value": "width .3s",
+        "purpose": "Backfill progress bar fill."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "narrow",
+        "value": "520px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Search input",
+      "kind": "input",
+      "refersTo": "search-input",
+      "description": "The main control: large, bordered, signal-blue focus ring.",
+      "html": "<input class=\"ds-search\" type=\"search\" placeholder=\"Words you remember, &quot;a phrase&quot;, from:someone\">",
+      "css": ".ds-search{width:100%;font:17px/1.45 system-ui,sans-serif;padding:12px 14px;border:1px solid #e3e7ec;border-radius:12px;background:#fff;color:#15181c}.ds-search:focus{outline:2px solid #1083fe;outline-offset:1px;border-color:transparent}"
+    },
+    {
+      "name": "Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Default small pill button.",
+      "html": "<button class=\"ds-btn\">Feeds</button>",
+      "css": ".ds-btn{font:13px/1.45 system-ui,sans-serif;height:32px;padding:0 12px;border-radius:999px;border:1px solid #e3e7ec;background:#fff;color:#15181c;cursor:pointer}.ds-btn:focus-visible{outline:2px solid rgba(16,131,254,.45);outline-offset:1px}"
+    },
+    {
+      "name": "Accent button",
+      "kind": "button",
+      "refersTo": "button-accent",
+      "description": "Outlined signal-blue pill for the main secondary action.",
+      "html": "<button class=\"ds-btn ds-btn-accent\">Search further back</button>",
+      "css": ".ds-btn{font:13px/1.45 system-ui,sans-serif;height:32px;padding:0 12px;border-radius:999px;border:1px solid #e3e7ec;background:#fff;color:#15181c;cursor:pointer}.ds-btn:focus-visible{outline:2px solid rgba(16,131,254,.45);outline-offset:1px}.ds-btn-accent{border-color:#1083fe;color:#1083fe;background:transparent;font-weight:600}"
+    },
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Filled signal-blue pill.",
+      "html": "<button class=\"ds-btn ds-btn-primary\">Sync now</button>",
+      "css": ".ds-btn{font:13px/1.45 system-ui,sans-serif;height:32px;padding:0 12px;border-radius:999px;border:1px solid #e3e7ec;background:#fff;color:#15181c;cursor:pointer}.ds-btn:focus-visible{outline:2px solid rgba(16,131,254,.45);outline-offset:1px}.ds-btn-primary{background:#1083fe;color:#fff;border-color:transparent;font-weight:600}"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Muted example-search pill on the demo.",
+      "html": "<button class=\"ds-chip\">climate</button>",
+      "css": ".ds-chip{font:12px/1.45 system-ui,sans-serif;height:28px;padding:0 12px;border-radius:999px;border:1px solid #e3e7ec;background:#fff;color:#5f6b7a;cursor:pointer}"
+    },
+    {
+      "name": "Post card",
+      "kind": "card",
+      "refersTo": "post-card",
+      "description": "A single archived post with a highlighted match.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-who\"><span class=\"ds-av\"></span><div><b>The Onion</b><div class=\"ds-h\">@theonion.com</div></div><span class=\"ds-when\">3d</span></div><p class=\"ds-text\">Area man swears he read it <mark>somewhere</mark> in his feed</p></div>",
+      "css": ".ds-card{font:16px/1.45 system-ui,sans-serif;background:#fff;border:1px solid #e3e7ec;border-radius:12px;padding:14px;color:#15181c}.ds-who{display:flex;gap:10px;align-items:center}.ds-av{width:36px;height:36px;border-radius:50%;background:#e3e7ec;flex:none}.ds-h{color:#5f6b7a;font-size:14px}.ds-when{margin-left:auto;color:#5f6b7a;font-size:13px}.ds-text{margin:10px 0 0}.ds-card mark{background:#fff1a8;color:#15181c;border-radius:3px;padding:0 1px}"
+    },
+    {
+      "name": "Notice",
+      "kind": "custom",
+      "refersTo": "notice",
+      "description": "Caution amber message strip.",
+      "html": "<div class=\"ds-notice\">Some feeds could not be fetched. Try again shortly.</div>",
+      "css": ".ds-notice{font:14px/1.45 system-ui,sans-serif;padding:10px 14px;border-radius:12px;background:#fff4e0;color:#9a5b00}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Narrowing Search",
+    "overview": "skyback is used in loops: a half-remembered word goes in, a pile of posts comes back, and the next move is to refine. The search box and filters are the stable top of the page; results with marked matches sit directly below. The surface is flat, bordered and calm, with system type and a single Bluesky blue for things you can act on.",
+    "keyCharacteristics": [
+      "Search first: the input is the largest and first control.",
+      "Flat everywhere: borders, never shadows.",
+      "One accent, used only on things you can act on or that have focus.",
+      "Matched words are always visibly marked in results.",
+      "Pill-shaped small controls, softly rounded larger containers.",
+      "Light and dark follow the system.",
+      "Phone width is the primary constraint."
+    ],
+    "rules": [
+      {
+        "name": "The One Signal Rule",
+        "body": "Signal blue marks what you can act on or what has focus. It is not used to decorate headings, borders or backgrounds beyond the 12% wash.",
+        "section": "colors"
+      },
+      {
+        "name": "The Matches Are Yellow Rule",
+        "body": "The highlighter is the only warm, saturated mark in the interface.",
+        "section": "colors"
+      },
+      {
+        "name": "The Post Is The Biggest Thing Rule",
+        "body": "Post text is body size and full-strength ink; everything about a post is smaller and muted.",
+        "section": "typography"
+      },
+      {
+        "name": "The Search Stays Put Rule",
+        "body": "The search box and its filters are the stable top of the page. Refining a query must never move them, collapse them, or clear what was typed.",
+        "section": "layout"
+      },
+      {
+        "name": "The Hairlines Not Shadows Rule",
+        "body": "Separate surfaces with a 1px hairline and a tonal step. Never add a shadow or a blur.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the search box and filters at the top, unchanged, as the query is refined.",
+      "Do mark every matched word in results with the highlighter.",
+      "Do use hairlines and tonal steps to separate surfaces.",
+      "Do define every color as a custom property with a dark counterpart, and keep the two modes structurally identical.",
+      "Do keep controls at least 26px tall, and prefer 32px for anything the owner taps on a phone.",
+      "Do build post content with textContent; highlights arrive as markers and become mark nodes.",
+      "Do keep owner controls and demo content strictly separated in markup (the owner and demo blocks)."
+    ],
+    "donts": [
+      "Don't add shadows, blurs, gradients or glass effects.",
+      "Don't use signal blue for decoration, or yellow for anything but a match.",
+      "Don't load web fonts or icon fonts.",
+      "Don't put owner-only controls (Sync, Feeds, Search further back, status) in the demo markup.",
+      "Don't make the interface louder than the posts it contains.",
+      "Don't reflow or clear the search input when results update."
+    ]
+  }
+}
