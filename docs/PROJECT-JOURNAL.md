@@ -75,7 +75,10 @@ Page CSS only, in `src/worker/ui/page.html`; no script, route or data change. Fi
 selects are 16px so iOS Safari does not zoom on focus. One `:focus-visible` ring in the
 full accent colour replaces the faint 45% ones (the band and demo pill keep their own
 colour and offset), and the search input's ring is `transparent` rather than `none`, so
-forced-colours mode can repaint it while the card draws the visible ring. Buttons get an
+forced-colours mode can repaint it. The search card's focus ring is no longer a 2px outline
+floating 2px off the card: the card's own border turns accent (1px border plus a 1px
+spread, so 2px with no layout shift) with a soft accent shadow below, fading in over 160ms
+under `prefers-reduced-motion: no-preference`, and a transparent outline for forced colours. Buttons get an
 `:active` press state (scale .97, transition inside `prefers-reduced-motion:
 no-preference`) and a 44px hit area through `::after`; selects cannot have one. The demo
 pill's `:hover` sits inside `(hover: hover) and (pointer: fine)`. Thumbnails get a
