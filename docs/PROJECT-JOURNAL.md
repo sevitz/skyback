@@ -69,6 +69,24 @@ app-ops.toml         secrets manifest for app-ops's secrets-sync.sh
 
 ## 5. Version history (what & why)
 
+### 2026-10-11 -- v0.3.2 -- CSS tidy against the good-css rules
+
+Page CSS only, in `src/worker/ui/page.html`; no script, route or data change. Filter
+selects are 16px so iOS Safari does not zoom on focus. One `:focus-visible` ring in the
+full accent colour replaces the faint 45% ones (the band and demo pill keep their own
+colour and offset), and the search input's ring is `transparent` rather than `none`, so
+forced-colours mode can repaint it. The search card's focus ring is no longer a 2px outline
+floating 2px off the card: the card's own border turns accent (1px border plus a 1px
+spread, so 2px with no layout shift) with a soft accent shadow below, fading in over 160ms
+under `prefers-reduced-motion: no-preference`, and a transparent outline for forced colours. Buttons get an
+`:active` press state (scale .97, transition inside `prefers-reduced-motion:
+no-preference`) and a 44px hit area through `::after`; selects cannot have one. The demo
+pill's `:hover` sits inside `(hover: hover) and (pointer: fine)`. Thumbnails get a
+`3 / 2` box and `flex: none` so they no longer shift the layout as they load. Truncated
+names, the demo pill and the progress track use `overflow: clip`. Gotcha: stacked
+buttons in a wrapped row now have overlapping 44px hit areas, so a tap near the seam goes
+to the later button.
+
 ### 2026-10-10 -- v0.3.1 -- wordmark back to its original colours
 
 The wordmark sits on a white (card coloured) tab on the band, "sky" in ink and "back" in
