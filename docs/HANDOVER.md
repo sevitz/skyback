@@ -29,9 +29,13 @@ a minimal AT Protocol client (`src/worker/bsky.js`), not the SDK. Workers free p
 
 ## Current state
 
-v0.2.0, 2026-10-09. Deployed. Tests: `npm test` and `npm run smoke`. New in 0.2.0: status
+v0.3.2, 2026-10-11. Deployed. Tests: `npm test` and `npm run smoke`. Since 0.2.0 (status
 line at the top, Search further back instead of continuous backfill, daily cron, public
-`/demo`, new icon, public repo.
+`/demo`, new icon, public repo): 0.2.1 signed-out visitors land on the demo, with a
+`demo | login` pill; 0.3.0 the "Sky" look (blue band, search card), `PRODUCT.md` and
+`DESIGN.md`; 0.3.1 wordmark back on a white tab; 0.3.2 CSS tidy in `page.html` only (16px
+selects, one focus ring, press state and 44px hit areas on buttons, thumbnail box, softer
+search card focus ring). Details in the journal's version history.
 
 ## First deploy
 
