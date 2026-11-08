@@ -149,3 +149,7 @@ Tracked as GitHub Issues in this repo, not here -- `enhancement` label for featu
 enhancement work, `bug` for bugs. This repo's own Project board carries the Status
 workflow; no milestones (releases are continuous). See app-ops's `CLAUDE.md`, "Work
 tracking (Issues, not task lists)", for the full convention.
+
+## Version and deploy stamp
+
+Every change that ships bumps this app's version (wherever the app keeps it, read from one place, never restated). The app shows the version together with when it was deployed, in UK time, for example `Version 1.3.0 (3c9e48a0) deployed 8 Nov 2026, 17:05`: in the page footer if it has a page, and from its version, health or status route. On Cloudflare the deploy time and version id come from the `[version_metadata]` binding (`CF_VERSION_METADATA`: `timestamp`, `id`), so they are always the real deployed ones. If this app does not show the deploy time yet, add it the next time you change it. The full rule is in app-ops `CLAUDE.md`, "Every app shows its version".
