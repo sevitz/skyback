@@ -69,6 +69,13 @@ app-ops.toml         secrets manifest for app-ops's secrets-sync.sh
 
 ## 5. Version history (what & why)
 
+### 2026-11-17 -- v0.3.3 -- whoami library refresh
+
+Re-vendored `src/worker/whoami/` from app-ops (`lib-sync.sh --install`). The shared pill
+can now draw a photo face in place of an emoji, for the people who have one. This repo is
+public and keeps only its owner (`whoami_people`), and the trim now also drops the photo
+table, so no photo is in this copy and nothing on screen changes here.
+
 ### 2026-10-11 -- v0.3.2 -- CSS tidy against the good-css rules
 
 Page CSS only, in `src/worker/ui/page.html`; no script, route or data change. Filter
